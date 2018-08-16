@@ -4,7 +4,7 @@ Smart Contract code for BrainFunc, built on the Ethereum Blockchain & ERC-721 pr
 # Contents
 
 ## Smart Contracts
-These are available inside the [src]("src") folder
+These are available inside the [src](src) folder
 - #### BrainpartTokenContract.sol
 
 
@@ -28,7 +28,7 @@ These are available inside the [src]("src") folder
 
 config.js contains contract abi's deployment, address and details about contract creator as well as deployment network. We have currently deployed the contracts on the Rinkeby Test Network.
 
-[config.js]("config.js") can be directly included in **ReactJS** based projects.
+[config.js](config.js) can be directly included in **ReactJS** based projects.
 
 # Author
 - Tejas Nikumbh
