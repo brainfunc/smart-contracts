@@ -2,6 +2,8 @@
 Smart Contract code for BrainFunc, built on the Ethereum Blockchain & ERC-721 protocol
 
 # Contents
+
+## Smart Contracts
 - #### BrainpartTokenContract.sol
 
 
@@ -20,6 +22,12 @@ Smart Contract code for BrainFunc, built on the Ethereum Blockchain & ERC-721 pr
 
 
   Open-zeppelin based smart contracts.
+
+## Configuration
+
+config.js contains contract abi's deployment, address and details about contract creator as well as deployment network. We have currently deployed the contracts on the Rinkeby Test Network.
+
+config.js can be directly included in **ReactJS** based projects.
 
 # Author
 - Tejas Nikumbh
