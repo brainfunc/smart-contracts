@@ -17,6 +17,8 @@ Smart Contract code for BrainFunc, built on the Ethereum Blockchain & ERC-721 pr
   Details [here](https://github.com/brainfunc/web-app/blob/master/docs/gameplay.md)
 
 - Others
+
+
   Open-zeppelin based smart contracts.
 
 # Author
