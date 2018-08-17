@@ -9,9 +9,7 @@ contract NeuronToken is ERC721BasicToken {
     string dna;
     string category;
     string subCategory;
-    // If we introduce these, also modify the CreateNeuron function
-    /* string uri;
-    string image; */
+    string uri;
   }
 
   Neuron[] public neurons;
@@ -22,11 +20,50 @@ contract NeuronToken is ERC721BasicToken {
   }
 
   function createNeuron(
-    string birthTimeStamp, string category, string subCategory, address to_) public {
-    require(owner == msg.sender);
+    string birthTimeStamp, string category,
+    string subCategory, string uri, address to_)
+    public payable onlyOwner {
+    // Making sure we are being paid apt amount
+    uint256 price = getPrice("category");
+    require(msg.value >= price);
+    // Adding collectible to contract set
     uint id = neurons.length;
-    neurons.push(Neuron(birthTimeStamp, category, subCategory));
+    neurons.push(Neuron(birthTimeStamp, category, subCategory, uri));
+    // Minting a crypto collectible
     _mint(to_, id);
+    // Transferring excess back to sender
+    if (msg.value > price) {
+      uint256 priceExcess = msg.value - price;
+      msg.sender.transfer(priceExcess);
+    }
   }
 
+  // Get Neuron uri for neuron of a particular id
+  function getJSONUriForNeuron(uint256 id)
+  public view returns(string) {
+    return neurons[id].uri;
+  }
+
+ // Makes sure only owner has access
+  modifier onlyOwner() {
+      require(msg.sender == owner);
+      _;
+  }
+
+  // Utility function to get price according to category
+  function getPrice(string category) private pure returns (uint256) {
+      if(keccak256(abi.encodePacked(category)) == keccak256("cerebrum")) {
+        return 0.04 ether;
+      } else if(keccak256(abi.encodePacked(category)) ==
+      keccak256(abi.encodePacked("cerebellum"))) {
+        return 0.03 ether;
+      } else if(keccak256(abi.encodePacked(category)) ==
+      keccak256(abi.encodePacked("brainstem"))) {
+        return 0.02 ether;
+      } else if(keccak256(abi.encodePacked(category)) ==
+      keccak256(abi.encodePacked("artery"))) {
+        return 0.01 ether;
+      }
+      return 0.00 ether;
+  }
 }
