@@ -16,7 +16,12 @@ contract NeuronToken is ERC721BasicToken {
   address public owner;
 
   constructor() public {
-    owner = msg.sender;
+      owner = msg.sender;
+  }
+
+  function totalSupply()
+  public view returns(uint256) {
+    return neurons.length;
   }
 
   function createNeuron(
@@ -31,7 +36,6 @@ contract NeuronToken is ERC721BasicToken {
     neurons.push(Neuron(birthTimeStamp, category, subCategory, uri));
     // Minting a crypto collectible
     _mint(to_, id);
-
     // Transferring excess back to sender
     // if (msg.value > price) {
     //   uint256 priceExcess = msg.value - price;
