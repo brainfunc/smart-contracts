@@ -27,7 +27,7 @@ contract NeuronToken is ERC721BasicToken {
   function createNeuron(
     string birthTimeStamp, string category,
     string subCategory, string uri, address to_)
-    public payable {
+    public onlyOwner payable {
     // Making sure we are being paid apt amount
     // uint256 price = getPrice("category");
     //require(msg.value >= price);
